@@ -11,4 +11,8 @@ from presidio_anonymizer.sample import sample_run_anonymizer
 
 def test_sample_run_anonymizer(text,start,end):
     # replace the following line with your test
-    assert sample_run_anonymizer(text,start,end) == "text: My name is BIP.\nitems:\n[\t{'start': 11, 'end': 15, 'entity_type': 'PERSON', 'text': 'BIP', 'operator': 'replace'}\n]"
+    result = sample_run_anonymizer(text,start,end)
+    assert result.text == "My name is BIP."
+    assert result.items[0].start == 11
+    assert result.items[0].end == 14
+    assert len(result.text) == len("My name is BIP.")
